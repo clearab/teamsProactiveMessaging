@@ -1,15 +1,9 @@
-﻿using Microsoft.AspNetCore.JsonPatch.Internal;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Connector;
+﻿using Microsoft.Bot.Connector;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Schema.Teams;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
 namespace TeamsProactiveMessaging
@@ -25,8 +19,9 @@ namespace TeamsProactiveMessaging
             conClient = new ConnectorClient(new Uri(serviceUrl), id, password);
         }
 
-        public async Task SendOneToOneMessage(ConversationResourceResponse conRef, string message)
+        public async Task<ResourceResponse> SendOneToOneMessage(string conversationId, Activity activity)
         {
+            return await conClient.Conversations.SendToConversationAsync(conversationId, activity);
 
         }
 
@@ -46,27 +41,29 @@ namespace TeamsProactiveMessaging
                 TenantId = tenantId
             };
 
-            ConversationResourceResponse response = await this.conClient.Conversations.CreateConversationAsync(conParams);
+            return await this.conClient.Conversations.CreateConversationAsync(conParams);
 
-            return response;
         }
 
-        public async Task<ConversationResourceResponse> CreateAndSendGroupOrChannelMessage(string channelId, string messageText)
+        public async Task<ConversationResourceResponse> CreateAndSendChannelMessage(string channelId, Activity activity)
         {
-            var message = MessageFactory.Text(messageText);
-
             ConversationParameters conParams = new ConversationParameters
             {
                 ChannelData = new TeamsChannelData
                 {
                     Channel = new ChannelInfo(channelId)
                 },
-                Activity = message
+                Activity = activity
             };
 
             ConversationResourceResponse response = await this.conClient.Conversations.CreateConversationAsync(conParams);
 
             return response;
+        }
+
+        public async Task<ResourceResponse> SendReplyToConversationThread(string threadId, Activity activity)
+        {
+            return await this.conClient.Conversations.SendToConversationAsync(threadId, activity);
         }
     }
 }

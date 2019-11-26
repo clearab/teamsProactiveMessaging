@@ -5,8 +5,9 @@ namespace TeamsProactiveMessaging
 {
     public interface IMessageSender
     {
-        Task<ConversationResourceResponse> CreateAndSendGroupOrChannelMessage(string channelId, string messageText);
+        Task<ConversationResourceResponse> CreateAndSendChannelMessage(string channelId, Activity activity);
         Task<ConversationResourceResponse> CreateOneToOneConversation(string userId, string tenantId);
-        Task SendOneToOneMessage(ConversationResourceResponse conRef, string message);
+        Task<ResourceResponse> SendOneToOneMessage(string conversationId, Activity activity);
+        Task<ResourceResponse> SendReplyToConversationThread(string threadId, Activity activity);
     }
 }

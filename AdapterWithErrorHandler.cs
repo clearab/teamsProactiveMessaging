@@ -20,7 +20,7 @@ namespace TeamsProactiveMessaging
                 logger.LogError($"Exception caught : {exception.Message}");
 
                 // Send a catch-all apology to the user.
-                await turnContext.SendActivityAsync("WHAT HAVE YOU DONE?!");
+                await turnContext.SendActivityAsync(exception.Message);
             };
         }
     }
