@@ -13,7 +13,7 @@ using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TeamsProactiveMessaging
+namespace Microsoft.BotBuilderSamples
 {
     public class Startup
     {

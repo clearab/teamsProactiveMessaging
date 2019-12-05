@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Bot.Schema;
 
-namespace TeamsProactiveMessaging
+namespace Microsoft.BotBuilderSamples
 {
     public interface IMessageSender
     {

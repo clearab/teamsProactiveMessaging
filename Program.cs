@@ -6,7 +6,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace TeamsProactiveMessaging
+namespace Microsoft.BotBuilderSamples
 {
     public class Program
     {
