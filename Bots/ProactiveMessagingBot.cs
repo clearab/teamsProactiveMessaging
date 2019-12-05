@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TeamsProactiveMessaging
+namespace Microsoft.BotBuilderSamples
 {
     public class ProactiveMessagingBot : TeamsActivityHandler
     {

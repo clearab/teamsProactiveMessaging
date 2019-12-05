@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace TeamsProactiveMessaging
+namespace Microsoft.BotBuilderSamples
 {
     public class MessageSender : IMessageSender
     {
